@@ -21,6 +21,6 @@ class Person(BaseModel):
 def home():
     return {"hello":"world"}
 
-@app.get("/person/new")
+@app.post("/person/new")
 def create_person(person:Person=Body(...)):
     return person
