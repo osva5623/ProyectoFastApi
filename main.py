@@ -41,3 +41,15 @@ def show_person(
         )
 ):
     return{name:age}
+
+@app.get("/person/detail/{person_id}")
+def show_person(
+    person_id:int=Path(
+        ...,
+        gt=0,
+        title="Person id",
+        description="This is a person id,It's greater than 0"
+        )
+):
+    return{person_id:"It exists!"}
+
