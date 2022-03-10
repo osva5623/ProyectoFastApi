@@ -24,7 +24,7 @@ class Location(BaseModel):
     state:str
     country:str
 
-class Person(BaseModel):
+class PersonBase(BaseModel):
     first_name:str=Field(
         ...,
         min_length=1,
@@ -47,6 +47,9 @@ class Person(BaseModel):
         default=None,
         expample=False
     )
+
+class Person(PersonBase):
+    pasword:str=Field(...,min_length=8)
     # class Config: 
     #     schema_extra = {
     #         "example": {
@@ -57,12 +60,14 @@ class Person(BaseModel):
     #             "is_married": False
     #         }
     #     }    
+class PersonOut(BaseModel): 
+    pass
 
 @app.get("/")
 def home():
     return {"hello":"world"}
 
-@app.post("/person/new")
+@app.post("/person/new", response_model=PersonOut)
 def create_person(person:Person=Body(...)):
     return person
 
