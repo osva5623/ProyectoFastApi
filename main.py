@@ -7,7 +7,7 @@ from pydantic import Field
 #Fastapi
 from fastapi import FastAPI
 from fastapi import status
-from fastapi import Body,Query,Path
+from fastapi import Body,Query,Path,Form
 
 app=FastAPI()
 
